@@ -39,6 +39,8 @@ local.properties
 .idea/jarRepositories.xml
 .idea/inspectionProfiles/
 .idea/shelf/
+.idea
+
 
 # Log files
 *.log
@@ -74,4 +76,6 @@ obj/
 
 # Other
 .idea/.gitignore
-local.properties
+
+# Kotlin
+.kotlin/
