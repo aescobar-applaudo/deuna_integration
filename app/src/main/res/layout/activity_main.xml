@@ -10,18 +10,24 @@
         android:id="@+id/showDeunaDialogButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DEUNA webcontent widget" />
+        android:text="DEUNA Elements Modal widget" />
 
     <Button
         android:id="@+id/showDeunaEmbeddedButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DEUNA Embedded Widget" />
+        android:text="DEUNA Elements Embedded Widget" />
 
     <Button
         android:id="@+id/showDeunaEmbeddedCardVaultButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="DEUNA Embedded Card Vault Widget" />
+        android:text="DEUNA Elements Embedded (Card Vault)" />
+
+    <Button
+        android:id="@+id/showNextActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="DEUNA Next Action Widget" />
 
 </LinearLayout>
