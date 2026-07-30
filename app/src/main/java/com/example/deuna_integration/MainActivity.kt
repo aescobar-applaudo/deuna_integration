@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import ui.DeunaEmbeddedActivity
 import ui.DeunaEmbeddedCardVaultActivity
+import ui.DeunaNextActionActivity
 import ui.dialog.DeunaPaymentDialog
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         embeddedButton.setOnClickListener {
             val intent = Intent(this, DeunaEmbeddedActivity::class.java).apply {
                 putExtra("ORDER_TOKEN", BuildConfig.DEUNA_ORDER_TOKEN)
+                putExtra("USER_TOKEN", BuildConfig.DEUNA_USER_TOKEN)
                 //putExtra("USER_TOKEN", "your-user-token-here")
             }
             startActivity(intent)
@@ -44,6 +46,15 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, DeunaEmbeddedCardVaultActivity::class.java).apply {
                 //putExtra("ORDER_TOKEN", "your-order-token-here")
                 putExtra("USER_TOKEN", BuildConfig.DEUNA_USER_TOKEN)
+            }
+            startActivity(intent)
+        }
+
+        val nextActionButton: Button = findViewById(R.id.showNextActionButton)
+
+        nextActionButton.setOnClickListener {
+            val intent = Intent(this, DeunaNextActionActivity::class.java).apply {
+                putExtra("ORDER_TOKEN", BuildConfig.DEUNA_ORDER_TOKEN)
             }
             startActivity(intent)
         }
