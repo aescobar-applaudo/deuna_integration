@@ -18,6 +18,9 @@
             android:name="ui.DeunaEmbeddedCardVaultActivity"
             android:exported="false" />
         <activity
+            android:name="ui.DeunaNextActionActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

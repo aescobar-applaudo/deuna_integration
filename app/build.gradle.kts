@@ -14,9 +14,7 @@ plugins {
 
 android {
     namespace = "com.example.deuna_integration"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "com.example.deuna_integration"
@@ -88,7 +86,7 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.github.deuna-developers:deuna-sdk-android:2.9.14")
+    implementation("com.github.deuna-developers:deuna-sdk-android:2.12.2") // use the latest version available
 
     val composeBom = platform("androidx.compose:compose-bom:2025.01.00") // use a stable version
 
