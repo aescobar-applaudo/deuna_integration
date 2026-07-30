@@ -1,6 +1,5 @@
 package ui
 
-import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
@@ -32,8 +31,6 @@ import com.deuna.maven.web_views.deuna.extensions.isValid
 import com.deuna.maven.web_views.deuna.extensions.submit
 import com.deuna.maven.widgets.configuration.ElementsWidgetConfiguration
 import com.example.deuna_integration.BuildConfig
-import com.example.deuna_integration.MainActivity
-import kotlin.collections.mapOf
 
 class DeunaEmbeddedCardVaultActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,9 +49,9 @@ class DeunaEmbeddedCardVaultActivity : ComponentActivity() {
             CardVaultScreen(
                 deunaSDK = deunaSDK,
                 //orderToken = orderToken,
-                userToken = BuildConfig.DEUNA_USER_TOKEN,
-                orderPrice = "1942.0",
-                currencyCode = "MXN"
+                userToken = userToken,
+                orderPrice = "196.0",
+                currencyCode = "USD"
 
             )
         }
@@ -75,7 +72,7 @@ fun CardVaultScreen(
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(700.dp)
+                .height(900.dp)
         ) {
             AndroidView(
                 modifier = Modifier.fillMaxSize(),
@@ -83,20 +80,20 @@ fun CardVaultScreen(
                     DeunaWidget(context).apply {
                         this.widgetConfiguration = ElementsWidgetConfiguration(
                             sdkInstance = deunaSDK,
-
-                            //orderToken = orderToken,
-                            userToken = userToken,
+                            //no order token needed for card vault
+                            domain = BuildConfig.DEUNA_DOMAIN,
+                            //userToken = userToken,
                             hidePayButton = true,
                             userInfo = UserInfo(
                                 firstName= "John",
                                 lastName= "Doe",
-                                email= "j.doe@mail.com"),
+                              email= "john.doe26@mail.com"),
                             callbacks = ElementsCallbacks().apply {
                                 onEventDispatch = { event, data ->
-                                    Log.d("DeunaWidget", "Event: $event data: $data")
+                                    Log.d("DeunaWidget", "Event: $event data: ${data["metadata"]}")
                                 }
                                 onSuccess = { data ->
-                                    Log.d("DeunaWidget", "Success: $data")
+                                    Log.d("DeunaWidget", "Success:${data["metadata"]}")
 
                                 }
                                 onError = { error ->
@@ -105,10 +102,14 @@ fun CardVaultScreen(
                             },
                             widgetExperience = ElementsWidgetExperience( // optional
                                 userExperience = ElementsWidgetExperience.UserExperience(
-                                    showSavedCardFlow = false, // optional
-                                    defaultCardFlow = true // optional
+                                    showSavedCardFlow = false,
+                                    defaultCardFlow = true
                                 )
-                            )
+                            ),
+                           behavior = mapOf(
+                                "orderPrice" to "",
+                                "currencyCode" to "currencyCode"
+                           )
                         )
                         build()
                         deunaWidget.value = this
@@ -116,7 +117,6 @@ fun CardVaultScreen(
                 }
             )
         }
-
         Spacer(modifier = Modifier.height(16.dp))
 
         Button(
@@ -128,10 +128,8 @@ fun CardVaultScreen(
                     Log.d(
                         "DeunaWidget",
                         "Submit result: ${result.status} - ${result.message}"
-
                     )
                 }
-
             },
             modifier = Modifier.fillMaxWidth()
         ) {
